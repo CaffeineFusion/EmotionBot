@@ -27,6 +27,22 @@ CURL
 
 ## Building our App
 Basic Node App [API -> Tone Analyser -> Watson]
+Setup Environment Variables
+------
+```
+.env
+BOT_URL=https://gateway.watsonplatform.net/conversation/api
+BOT_USER=
+BOT_PASS=
+BOT_WORKSPACE_ID=
+BOT_API=v1
+BOT_API_DATE=2017-07-17
+
+TONE_URL=https://gateway.watsonplatform.net/tone-analyzer/api
+TONE_USER=
+TONE_PASS=
+```
+
 Local / Deploy App
 
 ## Responding to Tone
