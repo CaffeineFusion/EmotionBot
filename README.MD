@@ -4,15 +4,15 @@
 ##### Contents
 -----
 ###### Watson Conversation
-[Getting Started](#getting-started-conversation)
-[Building the Conversation Service](#building-conversation)
+- [Getting Started](#getting-started-conversation)
+- [Building the Conversation Service](#building-conversation)
 
 ###### Tone Analyser
-[Getting Started](#getting-started-toneanalyser)
+- [Getting Started](#getting-started-toneanalyser)
 
 ###### App
-[Building our App](#building-app)
-[Responding to Tone](#responding-to-tone)
+- [Building our App](#building-app)
+- [Responding to Tone](#responding-to-tone)
 
 <a name="geting-started-conversation"/>
 ## Getting started with Watson Conversation

@@ -27,6 +27,7 @@ var conversation = new Conversation(conversationConfig);
 var toneAnalyser = new ToneAnalyser(toneConfig);
 
 
+// Routes
 router.use(function(req, res, next){
     console.log(req.sessionID);
     next();
@@ -48,6 +49,7 @@ router.get('/chat', function(req, res) {
 
 /**
  * POST api/v1/chat - Sends a message to an existing Conversation session
+ * @param {object}      req.body takes a json object of form {text:x, chatID:y}
  * @return {object}     returns a json object of form {}
  */
 router.post('/chat', function(req, res) {
