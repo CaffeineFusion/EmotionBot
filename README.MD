@@ -45,11 +45,19 @@ Tone Analyser
 CURL
 
 <a name="building-app" />
+
 ## Building our App
 Basic Node App [API -> Tone Analyser -> Watson]
-Basic Structure
+Basic App Structure
 ------
-``
+```
+server.js                           - Web Server
+.env                                - Environment Variables
+package.json                        - Our node package requirements
+routes/index.js                     - Web Entry Point
+internal_modules/Conversation.js    - Wrapper for Watson Conversation API
+internal_modules/ToneAnalyser.js    - Wrapper for Watson Tone Analyser
+```
 
 Setup Environment Variables
 ------
