@@ -1,6 +1,20 @@
 # Watson Developer Labs
 ## Building a bot that can respond to how your customers feel
 
+##### Contents
+-----
+###### Watson Conversation
+[Getting Started](#getting-started-conversation)
+[Building the Conversation Service](#building-conversation)
+
+###### Tone Analyser
+[Getting Started](#getting-started-toneanalyser)
+
+###### App
+[Building our App](#building-app)
+[Responding to Tone](#responding-to-tone)
+
+<a name="geting-started-conversation"/>
 ## Getting started with Watson Conversation
 Create Chatbot service
 Chatbot High Level
@@ -8,6 +22,7 @@ Chatbot High Level
 - Entities
 - Dialog
 
+<a name="building-conversation"/>
 ## Building the Conversation Service
 Intents
 Entities
@@ -19,12 +34,14 @@ Conversation
 Analysis
 CURL
 
+<a name="getting-started-toneanalyser" />
 ## Getting started with Tone Analyser
 Create Tone Analyser Service
 
 Tone Analyser
 CURL
 
+<a name="building-app" />
 ## Building our App
 Basic Node App [API -> Tone Analyser -> Watson]
 Basic Structure
@@ -49,6 +66,7 @@ TONE_PASS=
 
 Local / Deploy App
 
+<a name="responding-to-tone" />
 ## Responding to Tone
 Tone Entities and Custom Commands
 
