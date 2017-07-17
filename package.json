@@ -1,0 +1,19 @@
+{
+  "name": "emotion-bot",
+  "version": "1.0.0",
+  "description": "Demo Using Watson Tone Analyser and Conversation",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Watson",
+    "Emotion",
+    "Bot",
+    "Tone",
+    "Analyser",
+    "Conversation"
+  ],
+  "author": "Owen Smith",
+  "license": "ISC"
+}
