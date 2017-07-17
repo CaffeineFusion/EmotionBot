@@ -27,6 +27,10 @@ CURL
 
 ## Building our App
 Basic Node App [API -> Tone Analyser -> Watson]
+Basic Structure
+------
+``
+
 Setup Environment Variables
 ------
 ```
