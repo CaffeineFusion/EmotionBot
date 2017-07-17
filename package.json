@@ -15,5 +15,11 @@
     "Conversation"
   ],
   "author": "Owen Smith",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1"
+  }
 }
