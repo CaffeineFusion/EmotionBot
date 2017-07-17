@@ -15,6 +15,7 @@
 - [Responding to Tone](#responding-to-tone)
 
 <a name="geting-started-conversation"/>
+
 ## Getting started with Watson Conversation
 Create Chatbot service
 Chatbot High Level
@@ -23,6 +24,7 @@ Chatbot High Level
 - Dialog
 
 <a name="building-conversation"/>
+
 ## Building the Conversation Service
 Intents
 Entities
@@ -35,6 +37,7 @@ Analysis
 CURL
 
 <a name="getting-started-toneanalyser" />
+
 ## Getting started with Tone Analyser
 Create Tone Analyser Service
 
@@ -67,6 +70,7 @@ TONE_PASS=
 Local / Deploy App
 
 <a name="responding-to-tone" />
+
 ## Responding to Tone
 Tone Entities and Custom Commands
 
