@@ -46,14 +46,23 @@ Components:
 ## Getting started with Watson Conversation
 ### Creating Chatbot service
 1. Login to Bluemix
+
 ![Login to Bluemix](/screenshots/1-Initial.png)
+
 2. Open Services -> Watson
+
 ![Services Menu](/screenshots/2-Services.png)
 ![Watson Screen](/screenshots/3-Watson-Screen.png)
-3. Create Conversation Services
-![Watson Services](/screenshots/4-Watson-Services.png)
-![Conversation Configuration](/screenshots/5-Conversation-Conf.png)
 
+3. Create Conversation Services
+
+![Watson Services](/screenshots/4-Watson-Services.png)
+![Conversation Configuration](/screenshots/5-Conversation-Config.png)
+
+4. Note API Credentials
+
+![Conversation Management](/screenshots/6-Conversation-Manage.png)
+![Conversation Credentials](/screenshots/7-Conversation-Service-Creds.png)
 
 
 Chatbot High Level
@@ -64,6 +73,14 @@ Chatbot High Level
 <a name="building-conversation"/>
 
 ## Building the Conversation Service
+1. Login to Conversation Administration Panel
+
+![Conversation Login](/screenshots/8-Conversation-Login.png)
+
+2. Create Workspace
+
+![Conversation Workspaces](/screenshots/9-Conversation-Workspaces.png)
+
 ### Intents
 ### Entities
 - Fuzzy Matching [Beta] - stemming etc.
