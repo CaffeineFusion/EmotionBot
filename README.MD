@@ -26,15 +26,20 @@ Chatbot High Level
 <a name="building-conversation"/>
 
 ## Building the Conversation Service
-Intents
-Entities
+### Intents
+### Entities
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
-Dialog
+### Dialog
 - Slots
-Conversation
-Analysis
-CURL
+### Conversation
+### Analysis
+### CURL
+```
+curl -X POST --header 'Content-Type: application/json'  \
+-u "{password}":"{username}" \
+--header 'Accept: application/json'  -d '{}' \ 'https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version=2017-07-17'
+```
 
 <a name="getting-started-toneanalyser" />
 
@@ -81,6 +86,33 @@ Local / Deploy App
 
 ## Responding to Tone
 Tone Entities and Custom Commands
+1. Customer says "I'm furious with you guys"
+2. Tone Analyser detects Anger
+3. Bot redirects customer to a staff member to have a personal conversation
+
+### Detecting Tone - internal_modules/ToneAnalyser.js
+
+### Passing Custom Context Variables
+So our app can now extract emotion from text input, but how does the Bot respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
+
+`context:{emotion:{anger:0.9}}`
+
+We can then pick this up and use it in our Conversation Dialog Flow as a variable.
+
+```
+$emotion.anger >= 0.8
+```
+
+### Redirecting the Call
+1. Create a new node under the "Welcome" node, call it "Transfer to Team"
+This will be our escape node.
+2. Add a new child node under the "Support" node.
+    - Add the condition $emotion.anger >= 0.8 [$variables are context variables]
+    - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
+
+Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately.
+
+
 
 
 
