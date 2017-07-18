@@ -2,7 +2,7 @@
 
 // Load external dependencies
 var express  = require('express');
-//var session  = require('express-session');
+//var session  = require('express-session');  
 var helmet   = require('helmet');
 var app      = express();
 var path     = require('path');
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
-    store: store,
+    store: store,   //Hook in connect-mongodb-session for session state storage
     resave: true,
     saveUninitialized: true
 }));*/

@@ -1,6 +1,14 @@
 # Watson Developer Labs
 ## Building a bot that can respond to how your customers feel
 
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/CaffeineFusion/EmotionBot.git)
+
+
+##### Todo
+- Basic UI
+- yml file for spinning up app
+- Deployment Guide https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-with-node-js-on-bluemix
+
 ##### Contents
 -----
 ###### Watson Conversation
@@ -94,7 +102,6 @@ TONE_API_DATE=2017-07-17
 PORT=8080
 ```
 
-Local / Deploy App
 
 <a name="responding-to-tone" />
 
@@ -126,6 +133,13 @@ This will be our escape node.
 
 Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately.
 
+
+
+<a name="deploying-the-app" />
+
+## Deploying our App
+
+Local / Deploy App
 
 
 
