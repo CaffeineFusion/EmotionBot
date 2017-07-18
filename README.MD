@@ -44,10 +44,20 @@ curl -X POST --header 'Content-Type: application/json'  \
 <a name="getting-started-toneanalyser" />
 
 ## Getting started with Tone Analyser
-Create Tone Analyser Service
+### Create Tone Analyser Service
 
-Tone Analyser
-CURL
+### Tone Analyser
+Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
+The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
+
+This means that, for short text snippets in a conversation, the results could be erratic. One sentence is positive, the next negative.
+To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("the eggs were bad")`, you might pass in the last three
+```
+("The conference was fantastic
+")
+```
+
+### CURL
 
 <a name="building-app" />
 
