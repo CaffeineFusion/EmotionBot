@@ -1,8 +1,15 @@
 'use strict';
 
+/**
+ * Watson wrapper built by Owen Smith and Servian Pty Ltd.
+ *
+ * This code provides a basic wrapper around the Watson Developer Cloud Conversation Service.
+ * It is written for Node in ES6. The Conversation module is a Class.
+ * Promises are used, but error handling has not yet been built into this module.
+ **/
+
 const Watson    = require('watson-developer-cloud/conversation/v1');
-//const config    = require(__dirname + '/../config.json');
-//var importWebsite = require('../internal_modules/import_website.js');
+
 const DEFAULT_CONTEXT_SETTINGS = {
     "system": {"dialog_stack": [{"dialog_node":"root"}],
         "dialog_turn_counter": 1,
@@ -66,18 +73,7 @@ module.exports = class Conversation {
         this.transformation = transformation;
     }
 
-    //curl -X POST --header 'Content-Type: application/json'  -u "f90fafde-9b41-4920-9c00-42674a7fcc2d":"0rW1ZuKAY7mV" --header 'Accept: application/json'  -d '{}' 'https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/1466f2d2-d215-4423-b3e5-01a08eaab9a1/message?version=2016-09-20'
-    getConversationID() {
-        var self = this;
-        return new Promise(function(resolve, reject) {
-
-            sendPayload(self.Connection, self.workspaceID, {}, {})
-                .then(res => resolve(res.context.conversation_id))
-                .catch(reject);
-        });
-    }
-
-    //curl -X POST --header 'Content-Type: application/json'  -u "f90fafde-9b41-4920-9c00-42674a7fcc2d":"0rW1ZuKAY7mV" --header 'Accept: application/json'  -d "{\"input\": {\"text\": \"What is an RDD?\"}, \"context\": {\"conversation_id\": \"d93d5355-6195-4be5-b429-79e59182a75b\", \"system\": {\"dialog_stack\": [\"root\"], \"dialog_turn_counter\": 1, \"dialog_request_counter\": 1}}}" "https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/1466f2d2-d215-4423-b3e5-01a08eaab9a1/message?version=2016-09-20"
+    //curl -X POST --header 'Content-Type: application/json'  -u "{password}":"{user}" --header 'Accept: application/json'  -d "{\"input\": {\"text\": \"What is an RDD?\"}, \"context\": {\"conversation_id\": \"d93d5355-6195-4be5-b429-79e59182a75b\", \"system\": {\"dialog_stack\": [\"root\"], \"dialog_turn_counter\": 1, \"dialog_request_counter\": 1}}}" "https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version=2016-09-20"
     sendMessage(conversationID, message, sessionID) {
         var self = this;
         return new Promise(function(resolve, reject) {
