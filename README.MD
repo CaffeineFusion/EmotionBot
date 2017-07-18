@@ -6,11 +6,16 @@
 
 ##### Todo
 - Basic UI
-- yml file for spinning up app
+- YAML file for spinning up app
 - Deployment Guide https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-with-node-js-on-bluemix
+- Finish Auto-Deployment script
+- Set up demo so that users can navigate the code in Bluemix if they don't have node installed.
+- Export and Upload Postman config
 
 ##### Contents
 -----
+###### Requirements
+
 ###### Watson Conversation
 - [Getting Started](#getting-started-conversation)
 - [Building the Conversation Service](#building-conversation)
@@ -22,10 +27,27 @@
 - [Building our App](#building-app)
 - [Responding to Tone](#responding-to-tone)
 
+-------
+
+<a name="requirements"/>
+## Requirements
+1. Bluemix Account
+2. Node and npm (to run the application locally)
+3. CURL or Postman (so that we can test basic REST requests)
+
+Our app can be set up using Watson free tier services.
+Components:
+- Conversation Lite
+- ToneAnalyzer Lite
+- Node App
+
 <a name="geting-started-conversation"/>
 
 ## Getting started with Watson Conversation
 Create Chatbot service
+![Login to Bluemix](/screenshots/1-Initial.png)
+
+
 Chatbot High Level
 - Intents - ML
 - Entities
@@ -45,8 +67,9 @@ Chatbot High Level
 ### CURL
 ```
 curl -X POST --header 'Content-Type: application/json'  \
--u "{username}":"{password}" \
---header 'Accept: application/json'  -d '{}' \ 'https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version=2017-07-17'
+-u {username}:{password} \
+--header 'Accept: application/json'  -d '{}' \
+'https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version=2017-07-17'
 ```
 
 <a name="getting-started-toneanalyser" />
@@ -59,30 +82,50 @@ Tone Analyser is a machine learning model that detects a customer's sentiment ba
 The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
 
 This means that, for short text snippets in a conversation, the results could be erratic. One sentence is positive, the next negative.
-To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("the eggs were bad")`, you might pass in the last three
+To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("But the eggs were bad")`, you might pass in the last three
 ```
-("The conference was fantastic
-")
+("The conference was fantastic. The speakers were great. But the eggs were bad.")
 ```
 
+#### Sentence and JSON analysis
+Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
+For more details, you can check out:
+https://github.com/IBM-Bluemix-Docs/tone-analyzer/blob/master/getting-started.md
+
 ### CURL
+```
+curl --user "{username}":"{password}" \
+--header "Content-Type: application/json" \
+--data  "{\"text\": \"Hi Team, I know the times are difficult! Our sales have been disappointing for the past three quarters for our data analytics product suite. We have a competitive data analytics product suite in the industry. But we need to do our job selling it! \"}" \
+"https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-07-17&sentences=false"
+```
+
 
 <a name="building-app" />
 
 ## Building our App
 Basic Node App [API -> Tone Analyser -> Watson]
-Basic App Structure
+### Basic App Structure
 ------
+Within our App, we have an express web server (server.js), 1 main routing file (routes/index.js), 2 Watson API wrappers (internal_modules/ Conversation.js && ToneAnalyser.js) and an environment settings file (.env). package.json is our build file.
 ```
 server.js                           - Web Server
 .env                                - Environment Variables
 package.json                        - Our node package requirements
-routes/index.js                     - Web Entry Point
+routes/index.js                     - App Entry Point
+routes/conversation.js              - Demo Route for just the Conversation API
+routes/tone.js                      - Demo Route for just the Tone Analyser API
 internal_modules/Conversation.js    - Wrapper for Watson Conversation API
 internal_modules/ToneAnalyser.js    - Wrapper for Watson Tone Analyser
 ```
 
-Setup Environment Variables
+### Local build
+-------
+1. Install package.json: `npm install`
+2. Setup Environment Variables: `vim .env`[see section below for .env template]
+3. Run Demo: `node server.js`
+
+### Setup Environment Variables
 ------
 ```
 .env
@@ -101,6 +144,19 @@ TONE_API_DATE=2017-07-17
 
 PORT=8080
 ```
+
+### Testing
+------
+#### CURL local
+```
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 029946e5-e5b7-a387-10c3-5de996a35e44" -d '{
+	"text":"I need help with Watson",
+	"chatID":""
+}' "http://localhost:8080/api/v1/chat"
+```
+
+#### Postman Config
+
 
 
 <a name="responding-to-tone" />
