@@ -44,8 +44,16 @@ Components:
 <a name="geting-started-conversation"/>
 
 ## Getting started with Watson Conversation
-Create Chatbot service
+### Creating Chatbot service
+1. Login to Bluemix
 ![Login to Bluemix](/screenshots/1-Initial.png)
+2. Open Services -> Watson
+![Services Menu](/screenshots/2-Services.png)
+![Watson Screen](/screenshots/3-Watson-Screen.png)
+3. Create Conversation Services
+![Watson Services](/screenshots/4-Watson-Services.png)
+![Conversation Configuration](/screenshots/5-Conversation-Conf.png)
+
 
 
 Chatbot High Level
