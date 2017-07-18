@@ -78,14 +78,14 @@ module.exports = class Conversation {
      */
     constructor(config) {
         this.Connection = new Watson({
-            url: config.Credentials.API,
-            version_date: config.APIVersionDate,
-            version: config.APITVersion,
-            username: config.Credentials.UserName,
-            password: config.Credentials.Password,
-            headers: { "X-Watson-Learning-Opt-Out": "1" }
+            url: config.url,
+            version_date: config.version_date,
+            version: config.version,
+            username: config.username,
+            password: config.password,
+            //headers: { "X-Watson-Learning-Opt-Out": "1" } //If we don't want our input logged.
         });
-        this.workspaceID = config.WorkspaceID;
+        this.workspaceID = config.workspace_id;
         this.contexts = {};
         this.transformation = transformResponse;
     }
@@ -93,14 +93,16 @@ module.exports = class Conversation {
     /**
      * Sends a Message to the Watson Conversation API.
      * Replicates curl -X POST --header 'Content-Type: application/json'  -u "{password}":"{user}" --header 'Accept: application/json'  -d "{\"input\": {\"text\": \"What is an RDD?\"}, \"context\": {\"conversation_id\": \"d93d5355-6195-4be5-b429-79e59182a75b\", \"system\": {\"dialog_stack\": [\"root\"], \"dialog_turn_counter\": 1, \"dialog_request_counter\": 1}}}" "https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version={version_date}"
-     * @param  {string} conversationID Nullable. ID for the Conversation session.
-     * @param  {string} message        Nullable. Message to be POSTed to the Conversation instance.
-     * @param  {string} sessionID      SessionID of HTTP connection. Currently unused.
-     * @return {Promise}               Returns an ES6 Promise that Resolves to a JSON object.
+     * @param  {string} conversationID      Nullable. ID for the Conversation session.
+     * @param  {string} message             Nullable. Message to be POSTed to the Conversation instance.
+     * @param  {string} sessionID           Nullable. SessionID of HTTP connection. Currently unused.
+     * @param  {JSON}   additionalContext   Nullable. Contains any additional context to pass to Watson.
+     * @return {Promise}                    Returns an ES6 Promise that Resolves to a JSON object.
      */
-    sendMessage(conversationID, message, sessionID) {
+    sendMessage(conversationID, message, sessionID, additionalContext) {
         var self = this;
         return new Promise(function(resolve, reject) {
+
             // Create Payload
             var context = DEFAULT_CONTEXT_SETTINGS;
             if(conversationID !== null) {
@@ -109,6 +111,14 @@ module.exports = class Conversation {
                 if(self.contexts[conversationID] !== undefined) context = self.contexts[conversationID];
             }
             var input = {"text" : message };
+
+            if(additionalContext !== null) {
+                for(let name in additionalContext) {
+                    context[name] = additionalContext[name];
+                    console.log(additionalContext, context);
+                }
+            }
+
 
             console.log('=== Context :', context, context.system.dialog_stack, ' ===');
             console.log('=== Input :', input, ' ===');

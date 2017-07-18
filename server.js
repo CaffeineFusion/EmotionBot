@@ -2,7 +2,7 @@
 
 // Load external dependencies
 var express  = require('express');
-var session  = require('express-session');
+//var session  = require('express-session');
 var helmet   = require('helmet');
 var app      = express();
 var path     = require('path');
@@ -11,14 +11,16 @@ var bodyParser = require('body-parser');
 require('dotenv').config({silent:true});
 
 // Require Routes
+var conversation = require('./routes/conversation.js');
 var index = require('./routes/index.js');
+var tone = require('./routes/tone.js');
 
 // Load middleware
 app.use(helmet());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(session({
+/*app.use(session({
     secret: 'integrate secrets here',
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
@@ -26,10 +28,12 @@ app.use(session({
     store: store,
     resave: true,
     saveUninitialized: true
-}));
+}));*/
 
 // Load Routes
-app.use('/api/v1', index);
+app.use('/api/v1', index);                          // Main app
+app.use('/api/v1/conversation', conversation);      // Conversation only
+app.use('/api/v1/tone', tone);                      // Tone only
 
 app.get('*', function(req, res) {
     res.send(404);

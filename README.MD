@@ -37,7 +37,7 @@ Chatbot High Level
 ### CURL
 ```
 curl -X POST --header 'Content-Type: application/json'  \
--u "{password}":"{username}" \
+-u "{username}":"{password}" \
 --header 'Accept: application/json'  -d '{}' \ 'https://watson-api-explorer.mybluemix.net/conversation/api/v1/workspaces/{workspace_id}/message?version=2017-07-17'
 ```
 
@@ -88,6 +88,10 @@ BOT_API_DATE=2017-07-17
 TONE_URL=https://gateway.watsonplatform.net/tone-analyzer/api
 TONE_USER=
 TONE_PASS=
+TONE_API=v1
+TONE_API_DATE=2017-07-17
+
+PORT=8080
 ```
 
 Local / Deploy App
