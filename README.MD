@@ -59,7 +59,7 @@ Components:
 ![Watson Services](/screenshots/4-Watson-Services.png)
 ![Conversation Configuration](/screenshots/5-Conversation-Config.png)
 
-4. Note API Credentials
+4. Note down API Credentials
 
 ![Conversation Management](/screenshots/6-Conversation-Manage.png)
 ![Conversation Credentials](/screenshots/7-Conversation-Service-Creds.png)
@@ -81,7 +81,30 @@ Chatbot High Level
 
 ![Conversation Workspaces](/screenshots/9-Conversation-Workspaces.png)
 
+3. Note down Workspace ID
+
+
 ### Intents
+`Intents expanded on from IBM's DevZone Hands on Developer Lab:
+https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
+
+#### Intent 1 - #Greeting
+1. Hello, how are you doing today?
+2. Hi
+3. Good Afternoon
+4. Good Evening
+5. Good Morning
+6. G'day
+7. Sup?
+
+#### Intent 2 - #Support
+1. I’m looking for support on Watson Text to Speech Service
+2. How can I get support on Watson Service
+3. I am looking for support on Docker Container Service
+4. I am looking for support on SSO
+5. I need support on Object Storage Service
+6. Support required on IBM Container Service
+
 ### Entities
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
