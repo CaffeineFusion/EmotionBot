@@ -106,9 +106,25 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 5. I need support on Object Storage Service
 6. Support required on IBM Container Service
 
+#### Intent 3 - #Goodbye
+1. bye
+2. bye and take care
+3. goodbye!
+4. goodbye for now
+5. see you
+6. talk you soon
+
 ### Entities
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
+
+#### Entity 1 - \@Bluemix
+- docker - Container, Container Image, Docker
+- dev-ops - IBM Dev-Ops, DevOps, dev-ops
+- sso - Single Sign On, SSO
+- virtualmachine - Vitual Server, VM, Virtual machine
+- watson - Watson, Watson Services
+
 ### Dialog
 - Slots
 ### Conversation
