@@ -48,7 +48,7 @@ Components:
 ### Creating Chatbot service
 1. Login to Bluemix
 
-![Login to Bluemix](/screenshots/1-Initial.png){:height="50%" width="50%"}
+![Login to Bluemix](/screenshots/1-Initial.png)
 
 2. Open Services -> Watson
 
@@ -76,7 +76,7 @@ Chatbot High Level
 ## Building the Conversation Service
 1. Login to Conversation Administration Panel
 
-![Conversation Login](/screenshots/8-Conversation-Login.png)
+![Conversation Login](/screenshots/8-Conversation-Login.png) <!-- .element height="50%" width="50%" -->
 
 2. Create Workspace
 
