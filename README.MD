@@ -76,7 +76,7 @@ Chatbot High Level
 ## Building the Conversation Service
 1. Login to Conversation Administration Panel
 
-![Conversation Login](/screenshots/8-Conversation-Login.png) <!-- .element height="50%" width="50%" -->
+![Conversation Login](/screenshots/8-Conversation-Login.png) <!-- .element height="10%" width="10%" -->
 
 2. Create Workspace
 
