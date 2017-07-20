@@ -110,15 +110,18 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 1. bye
 2. bye and take care
 3. goodbye!
-4. goodbye for now
-5. see you
-6. talk you soon
+4. bugger off
+5. goodbye for now
+6. see you
+7. talk you soon
+8. so long and thanks for all the fish
+
 
 ### Entities
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
 
-#### Entity 1 - \@Bluemix
+#### Entity 1 - /@Bluemix
 - docker - Container, Container Image, Docker
 - dev-ops - IBM Dev-Ops, DevOps, dev-ops
 - sso - Single Sign On, SSO
@@ -127,6 +130,37 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 
 ### Dialog
 - Slots
+- Evaluation logic of Dialog structure
+
+#### Dialog Node - Welcome
+The Welcome node is the node received before a user says anything. Let's change the node to:
+If bot recognises: welcome
+Then respond with: Welcome to Bluemix support, how can I help you?
+
+#### Dialog Node - Anything else
+The Anything Else node is our catch all let's leave this as is.
+
+**Important Note** - Anything below an "anything_else" node can only be reached by a explicit goto statement. In evaluating conversation flow, Watson looks first at children of the current node. If it can't find an appropriate node, it then looks at the highest level nodes one by one.
+This is quite useful when you have a node you want to reuse several times. We'll come back to this.
+
+#### Dialog Node 1 - Support
+Let's say our bot has the capability to activate support features for Bluemix. When our user speaks to the bot, we need to detect that they are speaking about #Support, and then respond by activate the appropriate support feature. Our support feature corresponds to the /@bluemix entity we created.
+
+Click the 3 dots next to the Welcome node and select "Add node below"
+![Add Node](/screenshots/Add Node.png)
+
+We need to fill the node in as follows -
+If bot recognises: #Support
+Then respond with: I am enabling support for /@bluemix
+
+#### Dialog Node 2 - Goodbye
+Let's also add a final farewell node.
+Click the 3 dots next to the Support node and select "Add node below"
+![Add Node](/screenshots/Add Node.png)
+
+If bot recognises: #Goodbye
+Then respond with: Have a nice day.
+
 ### Conversation
 ### Analysis
 ### CURL
@@ -249,10 +283,61 @@ $emotion.anger >= 0.8
 1. Create a new node under the "Welcome" node, call it "Transfer to Team"
 This will be our escape node.
 2. Add a new child node under the "Support" node.
-    - Add the condition $emotion.anger >= 0.8 [$variables are context variables]
+    - Add the condition $emotion.anger >= 0.5 [$variables are context variables]
     - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
 
 Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately.
+
+Finally, let's detect their response.
+Goto the intents tab and create two new Intents:
+
+#### Intent 4 - #Agree
+- Sure
+- Thanks
+- Right away please
+- Yes please
+- That would be fantastic
+- Yep
+- Okay
+
+#### Intent 5 - #Disagree
+- No
+- That's not what I want
+- Stop
+- No Thanks
+- Hell no
+- That's wrong
+
+
+Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
+
+#### Child Node - /@Agree
+If bot recognises: /@Agree
+Then respond with: 'Putting you through right away!'
+
+#### Child Node - /@Diagree
+If bot recognises: /@Disagree
+Then respond with: 'No worries, is there anything else I can help with then?'
+
+
+#### Node - Goodbye
+We can also now tailor our messages to how the customer is feeling. Open the existing Goodbye node.
+
+Watson allows us to create responses that are sent based on a condition.
+1. Click "Add Another Response"
+![Add Response](/screenshots/Add-Another-Response.png)
+
+2. We then Add the Response condition
+![Add Response Condition](/screenshots/Response-Condition.png)
+$emotion.joy >= 0.5
+And our response is "Glad I could be of assistance! Have a fantastic day!"
+
+3. Let's do the same for our Angry customer.
+The condition will be $emotion.anger >= 0.5
+And our response is "Sorry I couldn't be of more assistance, hope you have a good day."
+
+4. **Important** - We now need to move the generic response to the bottom of the list to ensure that the other conditions are checked first. Click the up arrows on the Happy and Angry responses until they both are above the generic response.
+
 
 
 
