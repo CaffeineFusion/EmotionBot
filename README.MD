@@ -62,21 +62,15 @@ Components:
 
 4. Note down API Credentials
 
-![Conversation Management](/screenshots/6-Conversation-Manage.png)
 ![Conversation Credentials](/screenshots/7-Conversation-Service-Creds.png)
 
-
-Chatbot High Level
-- Intents - ML
-- Entities
-- Dialog
 
 <a name="building-conversation"/>
 
 ## Building the Conversation Service
 1. Login to Conversation Administration Panel
 
-![Conversation Login](/screenshots/8-Conversation-Login.png) <!-- .element height="10%" width="10%" -->
+![Conversation Login](/screenshots/8-Conversation-Login.png)
 
 2. Create Workspace
 
@@ -84,10 +78,20 @@ Chatbot High Level
 
 3. Note down Workspace ID
 
+4. Open Workspace
+
+### Chatbot High Level Overview
+- Intents
+- Entities
+- Dialog
 
 ### Intents
 `Intents expanded on from IBM's DevZone Hands on Developer Lab:
 https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
+
+Let's start by creating some Intents.
+Click on the Intents tab and click "Create new".
+We'll make three intents, with 6+ examples each.
 
 #### Intent 1 - #Greeting
 1. Hello, how are you doing today?
@@ -118,8 +122,16 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 
 
 ### Entities
+Let's also create an Entity. This allows us to detect specific key words and phrases.
+
+```
+Instructor will note:
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
+```
+For our Support bot, we want to detect different Bluemix services that a customer might be asking about.
+
+Click create new and enter the following details.
 
 #### Entity 1 - \@Bluemix
 - docker - Container, Container Image, Docker
@@ -128,9 +140,15 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 - virtualmachine - Vitual Server, VM, Virtual machine
 - watson - Watson, Watson Services
 
+*value - synonym, synonym, ...*
+
 ### Dialog
+Finally, let's start building our conversation flow. This provides the logic for how our customer will move through the conversation.
+```
+Instructor will note:
 - Slots
 - Evaluation logic of Dialog structure
+```
 
 #### Dialog Node - Welcome
 The Welcome node is the node received before a user says anything. Let's change the node to:
@@ -138,7 +156,7 @@ The Welcome node is the node received before a user says anything. Let's change 
 - Then respond with: Welcome to Bluemix support, how can I help you?
 
 #### Dialog Node - Anything else
-The Anything Else node is our catch all let's leave this as is.
+The Anything Else node is our catch all. Let's leave this as is.
 
 **Important Note** - Anything below an "anything_else" node can only be reached by a explicit goto statement. In evaluating conversation flow, Watson looks first at children of the current node. If it can't find an appropriate node, it then looks at the highest level nodes one by one.
 This is quite useful when you have a node you want to reuse several times. We'll come back to this.
@@ -162,7 +180,17 @@ Let's also add a final farewell node.
 - Then respond with: Have a nice day.
 
 ### Conversation
-### Analysis
+We can now test our bot. Click in the top right corner of the screen on the Chat Icon.
+
+![Chat Icon](/screenshots/Chat_Icon.png)
+![Conversation Panel](/screenshots/Conversation_Panel.png)
+
+Since we've been adjusting the Conversation, Watson may still be training. Wait until the purple "Watson is training" box disappears.
+![Watson Training](/screenshots/Watson_Training.png)
+
+### Improve Tab
+`Instructor to walk through analytics display and user conversation`
+
 ### CURL
 ```
 curl -X POST --header 'Content-Type: application/json'  \
@@ -312,6 +340,8 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
+![Add Child Node](/screenshots/Add-Child-Node.png)
+
 #### Child Node - \@Agree
 - If bot recognises: \@Agree
 - Then respond with: 'Putting you through right away!'
@@ -326,18 +356,21 @@ We can also now tailor our messages to how the customer is feeling. Open the exi
 
 Watson allows us to create responses that are sent based on a condition.
 1. Click "Add Another Response"
+
 ![Add Response](/screenshots/Add-Another-Response.png)
 
-2. We then Add the Response condition
+2. Click "Add Response Condition"
+
 ![Add Response Condition](/screenshots/Response-Condition.png)
-$emotion.joy >= 0.5
+
+3. We then Add the Response condition $emotion.joy >= 0.5
 And our response is "Glad I could be of assistance! Have a fantastic day!"
 
-3. Let's do the same for our Angry customer.
+4. Let's do the same for our Angry customer.
 The condition will be $emotion.anger >= 0.5
 And our response is "Sorry I couldn't be of more assistance, hope you have a good day."
 
-4. **Important** - We now need to move the generic response to the bottom of the list to ensure that the other conditions are checked first. Click the up arrows on the Happy and Angry responses until they both are above the generic response.
+5. **Important** - We now need to move the generic response to the bottom of the list to ensure that the other conditions are checked first. Click the up arrows on the Happy and Angry responses until they both are above the generic response.
 
 
 
