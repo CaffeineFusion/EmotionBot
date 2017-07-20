@@ -121,7 +121,7 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 - Fuzzy Matching [Beta] - stemming etc.
 - System Entities
 
-#### Entity 1 - /@Bluemix
+#### Entity 1 - \@Bluemix
 - docker - Container, Container Image, Docker
 - dev-ops - IBM Dev-Ops, DevOps, dev-ops
 - sso - Single Sign On, SSO
@@ -134,8 +134,8 @@ https://ibm.ent.box.com/s/7ax67hlgvx5o7tn2wy6cqr8g0mnnbf5c/folder/20544200034`
 
 #### Dialog Node - Welcome
 The Welcome node is the node received before a user says anything. Let's change the node to:
-If bot recognises: welcome
-Then respond with: Welcome to Bluemix support, how can I help you?
+- If bot recognises: welcome
+- Then respond with: Welcome to Bluemix support, how can I help you?
 
 #### Dialog Node - Anything else
 The Anything Else node is our catch all let's leave this as is.
@@ -146,20 +146,20 @@ This is quite useful when you have a node you want to reuse several times. We'll
 #### Dialog Node 1 - Support
 Let's say our bot has the capability to activate support features for Bluemix. When our user speaks to the bot, we need to detect that they are speaking about #Support, and then respond by activate the appropriate support feature. Our support feature corresponds to the /@bluemix entity we created.
 
-Click the 3 dots next to the Welcome node and select "Add node below"
+1. Click the 3 dots next to the Welcome node and select "Add node below"
 ![Add Node](/screenshots/Add Node.png)
 
-We need to fill the node in as follows -
-If bot recognises: #Support
-Then respond with: I am enabling support for /@bluemix
+2. We need to fill the node in as follows -
+- If bot recognises: #Support
+- Then respond with: I am enabling support for /@bluemix
 
 #### Dialog Node 2 - Goodbye
 Let's also add a final farewell node.
-Click the 3 dots next to the Support node and select "Add node below"
+1. Click the 3 dots next to the Support node and select "Add node below"
 ![Add Node](/screenshots/Add Node.png)
 
-If bot recognises: #Goodbye
-Then respond with: Have a nice day.
+- If bot recognises: #Goodbye
+- Then respond with: Have a nice day.
 
 ### Conversation
 ### Analysis
@@ -185,6 +185,7 @@ To get a better understanding of tone, you'll likely want to pass in conversatio
 ```
 ("The conference was fantastic. The speakers were great. But the eggs were bad.")
 ```
+
 
 #### Sentence and JSON analysis
 Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
@@ -311,13 +312,13 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
-#### Child Node - /@Agree
-If bot recognises: /@Agree
-Then respond with: 'Putting you through right away!'
+#### Child Node - \@Agree
+- If bot recognises: \@Agree
+- Then respond with: 'Putting you through right away!'
 
-#### Child Node - /@Diagree
-If bot recognises: /@Disagree
-Then respond with: 'No worries, is there anything else I can help with then?'
+#### Child Node - \@Diagree
+- If bot recognises: \@Disagree
+- Then respond with: 'No worries, is there anything else I can help with then?'
 
 
 #### Node - Goodbye
