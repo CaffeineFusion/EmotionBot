@@ -10,7 +10,7 @@ Powered by IBM Watson.
 
 # Before you begin
 1. Sign up for a Bluemix account
-      - [Sign up for Bluemix] (https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
+      - [Sign up for Bluemix](https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
 
 2. You'll need Cloud Foundry CLI, Git and Node
       - [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
