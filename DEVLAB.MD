@@ -7,15 +7,13 @@ Built by Owen Smith from [Servian](servian.ai)
 ![Servian Logo](/screenshots/servian_logo.png)
 
 # Before you begin
-1. Set up Bluemix account
+1. Set up for a Bluemix account
 - [Sign up for Bluemix] (https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
 
-2. Install Prereqs (Cloud Foundry, Git, Node)
-- [Install Git] (https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
-- [Install Cloud Foundry CLI]
-(https://github.com/cloudfoundry/cli#downloads)
-- [Install Node and NPM]
-(https://nodejs.org/#download)
+2. You'll need Cloud Foundry CLI, Git and Node
+- [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
+- [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
+- [Install Node and NPM](https://nodejs.org/#download)
 
 # Setting up our Project
 1. Clone project
