@@ -86,13 +86,13 @@ Hypothetical conversation flow:
 ### Passing Custom Context Variables
 So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
 
-      `context:{emotion:{anger:0.9}}`
+      context:{emotion:{anger:0.9}}
 
 We can then pick this up and use it in our Conversation Dialog Flow as a variable.
 
-      ```
-      $emotion.anger >= 0.8
-      ```
+```
+$emotion.anger >= 0.8
+```
 
 ### Redirecting the Call
 1. Create a new node under the "Welcome" node, call it "Transfer to Team"
