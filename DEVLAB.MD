@@ -9,7 +9,7 @@ Powered by IBM Watson.
 
 
 # Before you begin
-1. Set up for a Bluemix account
+1. Sign up for a Bluemix account
 - [Sign up for Bluemix] (https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
 
 2. You'll need Cloud Foundry CLI, Git and Node
@@ -18,7 +18,7 @@ Powered by IBM Watson.
 - [Install Node and NPM](https://nodejs.org/#download)
 
 # Setting up our Project
-1. Clone project
+1. Clone the project
 
 `git clone https://github.com/CaffeineFusion/EmotionBot.git`
 
@@ -42,8 +42,8 @@ cf service-key tone-analyser-service new-key
 # copy these credentials into the .env file
 ```
 
-4. Change app name
-`vim manifest.yml`
+4. Make our app name unique [`vim manifest.yml`]
+`- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
 
 5. Deploy application
 ```
@@ -54,22 +54,24 @@ cf push
 
 
 # Building our Emotion Bot
-1. Import base Workspace
-      1. Navigate to your [Bluemix console](https://console.au-syd.bluemix.net/dashboard/services)
-      2. Under All Services, Click into the conversation-service.
-      ![Conversation-Service](/screenshots/Conversation-Service.png)
-      3. Click "Launch Tool" to open the Conversation.
-      ![Launch-Tool](/screenshots/Launch-Tool.png)
-      4. Click the Upload button.
-      ![Upload-Workspace](/screenshots/Upload-Workspace.png)
-      5. Navigate to our project folder, select workspaces/workspace.json and import.
+## Importing our base Workspace
+1. Navigate to your [Bluemix console](https://console.au-syd.bluemix.net/dashboard/services)
+2. Under All Services, Click into the conversation-service.
 
-2. Conversation Overview
+![Conversation-Service](/screenshots/Conversation-Service.png)
+3. Click "Launch Tool" to open the Conversation.
+
+![Launch-Tool](/screenshots/Launch-Tool.png)
+4. Click the Upload button.
+
+![Upload-Workspace](/screenshots/Upload-Workspace.png)
+5. Navigate to our project folder, select workspaces/workspace.json and import.
+
+## Conversation Overview
 - Intents
 - Entities
 - Dialog
 
-3. Adding emotion awareness
 ## Responding to Tone
 Tone Entities and Custom Commands
 1. Customer says "I'm furious with you guys"
