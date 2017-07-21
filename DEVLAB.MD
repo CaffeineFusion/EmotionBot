@@ -10,45 +10,45 @@ Powered by IBM Watson.
 
 # Before you begin
 1. Sign up for a Bluemix account
-- [Sign up for Bluemix] (https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
+      - [Sign up for Bluemix] (https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
 
 2. You'll need Cloud Foundry CLI, Git and Node
-- [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
-- [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
-- [Install Node and NPM](https://nodejs.org/#download)
+      - [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
+      - [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
+      - [Install Node and NPM](https://nodejs.org/#download)
 
 # Setting up our Project
 1. Clone the project
 
-`git clone https://github.com/CaffeineFusion/EmotionBot.git`
+      `git clone https://github.com/CaffeineFusion/EmotionBot.git`
 
 2. Create our basic bluemix services
-```
-cf login
-cf create-service conversation free conversation-service
-cf create-service tone_analyzer lite tone-analyser-service
-```
+      ```
+      cf login
+      cf create-service conversation free conversation-service
+      cf create-service tone_analyzer lite tone-analyser-service
+      ```
 
 3. Add Credentials into .env file
-```
-mv .env.template .env
+      ```
+      mv .env.template .env
 
-cf create-service-key conversation-service new-key
-cf service-key conversation-service new-key
-# copy these credentials into the .env file
+      cf create-service-key conversation-service new-key
+      cf service-key conversation-service new-key
+      # copy these credentials into the .env file
 
-cf create-service-key tone-analyser-service new-key
-cf service-key tone-analyser-service new-key
-# copy these credentials into the .env file
-```
+      cf create-service-key tone-analyser-service new-key
+      cf service-key tone-analyser-service new-key
+      # copy these credentials into the .env file
+      ```
 
 4. Make our app name unique [`vim manifest.yml`]
-`- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
+      `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
 
 5. Deploy application
-```
-cf push
-```
+      ```
+      cf push
+      ```
 
 6. Demonstrate base app {app_name}.au-syd.mybluemix.net
 
@@ -58,15 +58,15 @@ cf push
 1. Navigate to your [Bluemix console](https://console.au-syd.bluemix.net/dashboard/services)
 2. Under All Services, Click into the conversation-service.
 
-![Conversation-Service](/screenshots/Conversation-Service.png)
+      ![Conversation-Service](/screenshots/Conversation-Service.png)
 
 3. Click "Launch Tool" to open the Conversation.
 
-![Launch-Tool](/screenshots/Launch-Tool.png)
+      ![Launch-Tool](/screenshots/Launch-Tool.png)
 
 4. Click the Upload button.
 
-![Upload-Workspace](/screenshots/Upload-Workspace.png)
+      ![Upload-Workspace](/screenshots/Upload-Workspace.png)
 
 5. Navigate to our project folder, select workspaces/workspace.json and import.
 
@@ -86,13 +86,13 @@ Hypothetical conversation flow:
 ### Passing Custom Context Variables
 So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
 
-`context:{emotion:{anger:0.9}}`
+      `context:{emotion:{anger:0.9}}`
 
 We can then pick this up and use it in our Conversation Dialog Flow as a variable.
 
-```
-$emotion.anger >= 0.8
-```
+      ```
+      $emotion.anger >= 0.8
+      ```
 
 ### Redirecting the Call
 1. Create a new node under the "Welcome" node, call it "Transfer to Team"
