@@ -59,12 +59,15 @@ cf push
 2. Under All Services, Click into the conversation-service.
 
 ![Conversation-Service](/screenshots/Conversation-Service.png)
+
 3. Click "Launch Tool" to open the Conversation.
 
 ![Launch-Tool](/screenshots/Launch-Tool.png)
+
 4. Click the Upload button.
 
 ![Upload-Workspace](/screenshots/Upload-Workspace.png)
+
 5. Navigate to our project folder, select workspaces/workspace.json and import.
 
 ## Conversation Overview
