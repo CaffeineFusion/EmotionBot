@@ -1,10 +1,10 @@
 # Watson Developer Labs
 ## Building a bot that can respond to how your customers feel
-Powered by IBM Watson.
-
-Built by Owen Smith from [Servian](servian.ai)
 
 ![Servian Logo](/screenshots/servian_logo.png)
+Built by Owen Smith from [Servian](servian.ai)
+Powered by IBM Watson.
+
 
 # Before you begin
 1. Set up for a Bluemix account
