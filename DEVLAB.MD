@@ -90,9 +90,8 @@ So our base app can extract emotion from text input, but how can we leverage Ton
 
 We can then pick this up and use it in our Conversation Dialog Flow as a variable.
 
-```
-$emotion.anger >= 0.8
-```
+      $emotion.anger >= 0.8
+
 
 ### Redirecting the Call
 1. Create a new node under the "Welcome" node, call it "Transfer to Team"
@@ -126,7 +125,7 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
-      ![Add Child Node](/screenshots/Add-Child-Node.png)
+![Add Child Node](/screenshots/Add-Child-Node.png)
 
 #### Child Node - \@Agree
 - If bot recognises: \@Agree
