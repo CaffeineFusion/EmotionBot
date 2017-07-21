@@ -73,7 +73,7 @@ cf push
 - Dialog
 
 ## Responding to Tone
-Tone Entities and Custom Commands
+Hypothetical conversation flow:
 1. Customer says "I'm furious with you guys"
 2. Tone Analyser detects Anger
 3. Bot redirects customer to a staff member to have a personal conversation
