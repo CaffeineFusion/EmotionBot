@@ -1,8 +1,15 @@
 `use strict`;
 
+// Convert ES6 Required Functions to ES5 - back compatibility. Not needed if launched using Docker
+/*require("babel-register")({
+    presets: [
+        "es2015"
+    ],
+});*/
+
 // Load external dependencies
 var express  = require('express');
-//var session  = require('express-session');  
+//var session  = require('express-session');
 var helmet   = require('helmet');
 var app      = express();
 var path     = require('path');

@@ -1,16 +1,13 @@
 # Watson Developer Labs
 ## Building a bot that can respond to how your customers feel
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/CaffeineFusion/EmotionBot.git)
-
-
 ##### Todo
 - Basic UI
-- YAML file for spinning up app
 - Deployment Guide https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-with-node-js-on-bluemix
-- Finish Auto-Deployment script
 - Set up demo so that users can navigate the code in Bluemix if they don't have node installed.
 - Export and Upload Postman config
+- ? BotaaS ?
+- Export Workspace
 
 ##### Contents
 -----
@@ -33,8 +30,9 @@
 
 ## Requirements
 1. Bluemix Account
-2. Node and npm (to run the application locally)
+2. Node and npm (if running the application locally)
 3. CURL or Postman (so that we can test basic REST requests)
+4. Git
 
 Our app can be set up using Watson free tier services.
 Components:
@@ -93,31 +91,22 @@ Let's start by creating some Intents.
 Click on the Intents tab and click "Create new".
 We'll make three intents, with 6+ examples each.
 
-#### Intent 1 - #Greeting
-1. Hello, how are you doing today?
-2. Hi
-3. Good Afternoon
-4. Good Evening
-5. Good Morning
-6. G'day
-7. Sup?
-
-#### Intent 2 - #Support
+#### Intent 1 - #Support
 1. I’m looking for support on Watson Text to Speech Service
 2. How can I get support on Watson Service
-3. I am looking for support on Docker Container Service
+3. I need some help with Docker Container Service
 4. I am looking for support on SSO
 5. I need support on Object Storage Service
 6. Support required on IBM Container Service
 
-#### Intent 3 - #Goodbye
+#### Intent 2 - #Goodbye
 1. bye
 2. bye and take care
 3. goodbye!
 4. bugger off
 5. goodbye for now
 6. see you
-7. talk you soon
+7. talk to you soon
 8. so long and thanks for all the fish
 
 
@@ -162,7 +151,7 @@ The Anything Else node is our catch all. Let's leave this as is.
 This is quite useful when you have a node you want to reuse several times. We'll come back to this.
 
 #### Dialog Node 1 - Support
-Let's say our bot has the capability to activate support features for Bluemix. When our user speaks to the bot, we need to detect that they are speaking about #Support, and then respond by activate the appropriate support feature. Our support feature corresponds to the /@bluemix entity we created.
+Let's say our bot has the capability to activate support features for Bluemix. When our user speaks to the bot, we need to detect that they are speaking about #Support, and then respond by activate the appropriate support feature. Our support feature corresponds to the /@Bluemix entity we created.
 
 1. Click the 3 dots next to the Welcome node and select "Add node below"
 ![Add Node](/screenshots/Add Node.png)

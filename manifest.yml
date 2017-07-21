@@ -1,11 +1,21 @@
+declared-services:
+  conversation-service:
+    label: conversation
+    plan: free
+  tone-analyser-service:
+    label: tone_analyzer
+    plan: lite
 applications:
 - name: emotion_bot
+  services:
+  - conversation-service
+  - tone-analyser-service
   memory: 256M
   disk_quota: 512M
-  path: /dev/emotion_bot
-  buildpack: nodejs_buildpack
-  host: emotion_bot
-  domain: mybluemix.net
+  path: .
+  # buildpack: nodejs_buildpack
+  host: emotion_bot_owen
+  domain: au-syd.mybluemix.net
   command: node server.js
   timeout: 80
   env:
