@@ -84,7 +84,7 @@ Hypothetical conversation flow:
 ### Detecting Tone - internal_modules/ToneAnalyser.js
 
 ### Passing Custom Context Variables
-So our app can now extract emotion from text input, but how does the Bot respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
+So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
 
 `context:{emotion:{anger:0.9}}`
 
