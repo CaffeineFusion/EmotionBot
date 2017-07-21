@@ -2,7 +2,9 @@
 ## Building a bot that can respond to how your customers feel
 
 ![Servian Logo](/screenshots/servian_logo.png)
+
 Built by Owen Smith from [Servian](servian.ai)
+
 Powered by IBM Watson.
 
 
