@@ -126,7 +126,7 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
-![Add Child Node](/screenshots/Add-Child-Node.png)
+      ![Add Child Node](/screenshots/Add-Child-Node.png)
 
 #### Child Node - \@Agree
 - If bot recognises: \@Agree
@@ -143,11 +143,11 @@ We can also now tailor our messages to how the customer is feeling. Open the exi
 Watson allows us to create responses that are sent based on a condition.
 1. Click "Add Another Response"
 
-![Add Response](/screenshots/Add-Another-Response.png)
+      ![Add Response](/screenshots/Add-Another-Response.png)
 
 2. Click "Add Response Condition"
 
-![Add Response Condition](/screenshots/Response-Condition.png)
+      ![Add Response Condition](/screenshots/Response-Condition.png)
 
 3. We then Add the Response condition $emotion.joy >= 0.5
 And our response is "Glad I could be of assistance! Have a fantastic day!"
