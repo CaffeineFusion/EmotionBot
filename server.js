@@ -6,6 +6,7 @@ var helmet   = require('helmet');
 var app      = express();
 var path     = require('path');
 var bodyParser = require('body-parser');
+var PORT = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 
 require('dotenv').config({silent:true});
 
@@ -34,8 +35,8 @@ app.get('*', function(req, res) {
 
 // Launch Server
 if(require.main === module) {
-    app.listen(process.env.PORT || process.env.VCAP_APP_PORT || 3000, function(){
-       console.log('Express listening on port ' + process.env.PORT || process.env.VCAP_APP_PORT ||  3000);
+    app.listen(PORT, function(){
+       console.log('Express listening on port ' + PORT);
     });
 }
 else exports.app = app;
