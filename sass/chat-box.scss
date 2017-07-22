@@ -1,0 +1,203 @@
+@import "variables";
+
+.chat-box-container {
+    //Adjusted to full window for email api
+    //width: 50vw;
+    width:100vw;
+    //height: 81vh;
+    height: 90vh;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    background-color:$light-gray;
+    opacity: 1;
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    will-change: auto;
+    transition: all .5s,left 1s ease-out 1.2s,position 1s ease-out 1.2s,-webkit-transform 1s ease-out 1.2s,-webkit-transform-origin 1s ease-out 1.2s,-webkit-filter .5s ease-in-out;
+    transition: all .5s,left 1s ease-out 1.2s,transform 1s ease-out 1.2s,transform-origin 1s ease-out 1.2s,position 1s ease-out 1.2s,filter .5s ease-in-out;
+    transition: all .5s,left 1s ease-out 1.2s,transform 1s ease-out 1.2s,transform-origin 1s ease-out 1.2s,position 1s ease-out 1.2s,filter .5s ease-in-out,-webkit-transform 1s ease-out 1.2s,-webkit-transform-origin 1s ease-out 1.2s,-ms-transform-origin 1s ease-out 1.2s,-webkit-filter .5s ease-in-out;
+    margin-left: 0;
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+}
+.chat-box-container {
+
+        .chat-content {
+            padding-top: 3em !important;
+            max-height: 93vh;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-top: 0.5rem;
+
+            overflow-y: scroll;
+            overflow-x: hidden;
+     }
+        .chat-input {
+        background: white;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        position: relative;
+        min-height: 11rem;
+        margin-bottom: 1vw;
+        padding: 0 0.8rem;
+
+    }
+}
+.input-wrapper {
+        position: relative;
+        padding-left: 1.5rem;
+        padding-top: 0.1em;
+        width: 100%;
+        margin: auto 1rem 0 0.5rem;
+}
+.mdl-textfield.input-field {
+    width: 80%;
+    height: auto;
+}
+.collapse-containter{
+    height: 100%;
+
+    background: white;
+    box-shadow: 0 30px 60px 0 rgba(155,154,155,0.30);
+}
+
+.message.bot {
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    will-change: animation;
+    -webkit-animation: appearFromLeft .5s;
+    animation: appearFromLeft .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    opacity: 0;
+
+    &.second {
+        animation-delay: 2s;
+    }
+    &.third {
+        animation-delay: 4s;
+    }
+}
+
+.bot .bot-message-container {
+    margin: 0 0 0 2rem;
+    transition: margin-left .5s ease-in-out;
+}
+.user .bot-message-container {
+    margin: 0 3rem 0 0;
+    transition: margin-right .5s ease-in-out;
+}
+.bot-message {
+    background: #FFFFFF;
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,0.20);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px 6px 6px 0;
+    font-size: 1.2em;
+    padding: 1em 1em;
+    min-height: 3em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transition: padding ease-in-out .2s;
+    width: auto;
+    max-width: 35vw;
+    margin: 0.2em 0;
+}
+
+.message-content {
+    padding-bottom:2em;
+    border-bottom: 1px solid $light-gray;
+}
+
+.message.user {
+    @extend .message.bot;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    display: flex;
+    -webkit-animation: appearFromRight .5s;
+    animation: appearFromRight .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    .bot-message {
+            border-radius: 6px 6px 0;
+            background-color: lighten($brand-secondary, $message-box-lighten);
+            //10);
+            color: #fff;
+            position: relative;
+    }
+}
+
+// ease in from left and right animation keyframes
+
+@keyframes appearFromRight {
+    0% {
+    display: none;
+    opacity: 0;
+    margin-right: -15vw;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+        margin-right: -15vw;
+    }
+    20% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        margin-right: 0;
+    }
+}
+
+@keyframes appearFromLeft {
+    0% {
+    display: none;
+    opacity: 0;
+    margin-left: -15vw;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+        margin-left: -15vw;
+    }
+    20% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        margin-left: 0;
+    }
+}

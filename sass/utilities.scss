@@ -1,0 +1,28 @@
+// Helper classes
+$sm:    5px;
+$md:    3em;
+$lg:    5em;
+
+.text-center {
+    margin: auto;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+.p-l-sm {
+    padding-left: $sm;
+}
+.p-l-md {
+    padding-left: $md;
+}
+.p-l-lg {
+    padding-left: $lg;
+}
+
+.loader {
+    padding: $md;
+    text-align: center;
+    align-items: middle;
+     animation-delay: 6s;
+}
