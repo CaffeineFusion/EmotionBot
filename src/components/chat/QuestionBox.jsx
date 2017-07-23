@@ -76,7 +76,7 @@ export default class QuestionBox extends Component {
     }
 
     loadChatID() {
-        $.get(API + this.props.api + '/chat',
+        $.get(API + '/chat',
             function (data, status) {
                 this.state.chatID = data.chatID;
                 this.props.onAnswer(data);

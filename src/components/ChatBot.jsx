@@ -98,7 +98,7 @@ export default class ChatBot extends Component {
                                 <ChatHistory ref="chatHistory" chatHistory={this.state.chatHistory} liveAgent={this.state.liveAgent}
                                     onTransferClick={this.onTransferClick} transferText={this.state.transferText} loading={this.state.loading}
                                     maps={this.props.maps}/>
-                                <QuestionBox ref="questionBox" api={this.state.api} onAnswer={this.receiveAnswer}
+                                <QuestionBox ref="questionBox" onAnswer={this.receiveAnswer}
                                     onQuestion={this.receiveQuestion} speech={this.state.speech} defaultText='Ask Servian a question...'/>
                             </div>
 

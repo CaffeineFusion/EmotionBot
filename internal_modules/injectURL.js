@@ -8,12 +8,16 @@
  * Hence the prepacked frontend is in public, and we just update the url posthoc.
  **/
 
-require('shelljs');
-require('dotenv').config({silent:true});
+var shell = require('shelljs');
+//require('dotenv').config({silent:true});
+var cfenv = require("cfenv")
 
-var URL = process.env.application_uris[0];
-shell.ls('../public/index.js').forEach(function (file) {
-  shell.sed('-i', 'localhost:8080', URL, file);
+var appEnv = cfenv.getAppEnv()
+
+var URL = appEnv.url;//process.env.VCAP_APPLICATION.application_uris[0];
+console.log(URL);
+shell.ls('./public/*.js').forEach(function (file) {
+  shell.sed('-i', 'http://localhost:8080', URL, file);
 });
 
 process.exit();

@@ -8,7 +8,7 @@
     "prebuild": "rm -rf public/ && mkdir public/ && cp -R src/img public/img/ && cp -R src/fonts public/fonts && cp src/index.html public/index.html",
     "build-css": "node-sass --include-path sass sass/style.scss public/css/style.css",
     "build": "gulp --env=prod",
-    "inject":"node injectURL.js"
+    "inject": "node ./internal_modules/injectURL.js"
   },
   "keywords": [
     "Watson",
@@ -22,6 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cfenv": "^1.0.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "helmet": "^3.6.1",

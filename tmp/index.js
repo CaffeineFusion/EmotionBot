@@ -23618,7 +23618,7 @@
 	                                _react2.default.createElement(_ChatHistory2.default, { ref: 'chatHistory', chatHistory: this.state.chatHistory, liveAgent: this.state.liveAgent,
 	                                    onTransferClick: this.onTransferClick, transferText: this.state.transferText, loading: this.state.loading,
 	                                    maps: this.props.maps }),
-	                                _react2.default.createElement(_QuestionBox2.default, { ref: 'questionBox', api: this.state.api, onAnswer: this.receiveAnswer,
+	                                _react2.default.createElement(_QuestionBox2.default, { ref: 'questionBox', onAnswer: this.receiveAnswer,
 	                                    onQuestion: this.receiveQuestion, speech: this.state.speech, defaultText: 'Ask Servian a question...' })
 	                            ),
 	                            _react2.default.createElement('div', { className: 'mdl-cell mdl-cell--6-col ' })
@@ -25675,7 +25675,7 @@
 	    }, {
 	        key: 'loadChatID',
 	        value: function loadChatID() {
-	            $.get(API + this.props.api + '/chat', function (data, status) {
+	            $.get(API + '/chat', function (data, status) {
 	                this.state.chatID = data.chatID;
 	                this.props.onAnswer(data);
 	            }.bind(this));
