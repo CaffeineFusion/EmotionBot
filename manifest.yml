@@ -6,17 +6,12 @@ declared-services:
     label: tone_analyzer
     plan: lite
 applications:
-- name: emotion_bot
+- name: emotion_bot_owen
   services:
   - conversation-service
   - tone-analyser-service
-  memory: 256M
+  memory: 512M
   disk_quota: 512M
   path: .
   # buildpack: nodejs_buildpack
-  host: emotion_bot_owen
-  domain: au-syd.mybluemix.net
-  command: node server.js
-  timeout: 80
-  env:
-    env_type: production
+  command: npm run inject && npm start
