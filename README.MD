@@ -159,4 +159,4 @@ And our response is "Sorry I couldn't be of more assistance, hope you have a goo
 
 
 
-**For instructions on setting up the base Workspace we imported, please see FULLGUIDE.MD.**
+*For instructions on setting up the base Workspace we imported, please see FULLGUIDE.MD.*
