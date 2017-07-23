@@ -1,5 +1,5 @@
 # Watson Developer Labs
-## Building a bot that can respond to how your customers feel
+## Building a Watson chatbot that intuitively responds to how your customer feels!
 
 ![Servian Logo](/screenshots/servian_logo.png)
 
