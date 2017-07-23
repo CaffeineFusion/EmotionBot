@@ -14,4 +14,4 @@ applications:
   disk_quota: 512M
   path: .
   # buildpack: nodejs_buildpack
-  command: node server.js
+  command: npm run inject && npm start

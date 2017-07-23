@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rm -rf public/ && mkdir public/ && cp -R src/img public/img/ && cp -R src/fonts public/fonts && cp src/index.html public/index.html",
     "build-css": "node-sass --include-path sass sass/style.scss public/css/style.css",
-    "build": "gulp --env=prod"
+    "build": "gulp --env=prod",
+    "inject":"node injectURL.js"
   },
   "keywords": [
     "Watson",
@@ -24,6 +25,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "helmet": "^3.6.1",
+    "shelljs": "^0.7.8",
     "watson-developer-cloud": "^2.34.0"
   },
   "devDependencies": {
