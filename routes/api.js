@@ -26,6 +26,22 @@ const conversationConfig = {
 var conversation = new Conversation(conversationConfig);
 var toneAnalyser = new ToneAnalyser(toneConfig);
 
+/**
+ * Clean up our output for the UI
+ * @param  {JSON} data      JSON output from Conversation service
+ * @return {JSON}           Final output for consumption
+ */
+var transform = function(data) {
+    console.log('transform', data);
+    let result = { intents : [], response: [], chat_id : ''};
+    data.intents.forEach((i) => {
+        result.intents.push({"intent":i.intent, "confidence":Number(i.confidence).toFixed(2)});
+    });
+    result.response = data.output.text;
+    result.chatID = data.context.conversation_id;
+    return result;
+};
+
 
 // Routes
 router.use(function(req, res, next){
@@ -43,6 +59,7 @@ router.get('/chat', function(req, res) {
     conversation.sendMessage(null, null, sessionID)
         //.then(bot.transform)
         .then(res => { console.log('==== get bot ID ====', res); return res;})
+        .then(result => transform(result))
         .then(result => res.json(result))
         .catch(error => res.status(400).send({ success: false, err: error}));
 });
@@ -75,6 +92,7 @@ router.post('/chat', function(req, res) {
         .then(context => {
             return conversation.sendMessage(chatID, text, sessionID, context);
         }) //Pass in additional context
+        .then(result => transform(result))
         .then(result => res.json(result))
         .catch(error => res.status(400).send({ success: false, err: error}));
 

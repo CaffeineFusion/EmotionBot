@@ -98,7 +98,7 @@ export default class QuestionBox extends Component {
 
         let self = this;
 
-        $.post(API + this.props.api + '/chat',
+        $.post(API + '/chat',
             {text: text.trim(),//this.state.value.trim(),
             chatID: this.state.chatID})
             .done(self.props.onAnswer)

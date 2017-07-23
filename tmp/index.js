@@ -25696,7 +25696,7 @@
 
 	            var self = this;
 
-	            $.post(API + this.props.api + '/chat', { text: text.trim(), //this.state.value.trim(),
+	            $.post(API + '/chat', { text: text.trim(), //this.state.value.trim(),
 	                chatID: this.state.chatID }).done(self.props.onAnswer)
 	            //.fail((xhr, status, error) => {console.log(xhr); console.log(status); console.log(error);});
 	            .fail(function (xhr, status, error) {
