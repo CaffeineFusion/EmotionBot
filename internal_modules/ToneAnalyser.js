@@ -33,7 +33,7 @@ module.exports = class ToneAnalyser {
     /**
      * Transform the output of the ToneAnalyser service into the desired JSON schema
      * @param  {JSON} analysis      Raw output of the Tone Analyser Service
-     * @return {JSON}               Restructured JSON output
+     * @return {JSON}               Restructured JSON output { emotion: { anger: x, ... }, social: {...} }
      */
     transform(analysis) {
         let result = {};
