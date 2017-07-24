@@ -1,5 +1,5 @@
 # Watson Developer Labs
-## Building a bot that can respond to how your customers feel
+## Building a Watson chatbot that intuitively responds to how your customer feels!
 
 ![Servian Logo](/screenshots/servian_logo.png)
 
@@ -156,3 +156,10 @@ The condition will be $emotion.anger >= 0.5
 And our response is "Sorry I couldn't be of more assistance, hope you have a good day."
 
 5. **Important** - We now need to move the generic response to the bottom of the list to ensure that the other conditions are checked first. Click the up arrows on the Happy and Angry responses until they both are above the generic response.
+
+
+
+------
+#### Notes
+
+*For instructions on setting up the base Workspace we imported, please see FULLGUIDE.MD.*
