@@ -50,7 +50,7 @@ Powered by IBM Watson.
       cf push
       ```
 
-6. Demonstrate base app {app_name}.au-syd.mybluemix.net
+6. Demonstrate base app https://{app_name}.au-syd.mybluemix.net
 
 
 # Building our Emotion Bot
@@ -69,6 +69,23 @@ Powered by IBM Watson.
       ![Upload-Workspace](/screenshots/Upload-Workspace.png)
 
 5. Navigate to our project folder, select workspaces/workspace.json and import.
+
+6. Add our Workspace ID to the App.
+    - Click back to Workspaces
+
+        ![Back-To-Workspaces](/screenshots/Back-To-Workspaces.png)
+
+    - Click the details button on your new Workspace
+
+        ![Workspace-Get-Details](/screenshots/Workspace-Get-Details.png)
+
+    - Copy Workspace ID
+
+        ![Workspace-Details](/screenshots/Workspace-Details.png)
+
+    - Paste into the .env file
+    - Run `cf push`
+
 
 ## Conversation Overview
 - Intents
@@ -94,13 +111,13 @@ We can then pick this up and use it in our Conversation Dialog Flow as a variabl
 
 
 ### Redirecting the Call
-1. Create a new node under the "Welcome" node, call it "Transfer to Team"
-This will be our escape node.
+1. Create a new node under the "Anything Else" node, call it "Transfer to Team"
+This will be our escape node. "Would you like me to transfer you to our team?"
 2. Add a new child node under the "Support" node.
     - Add the condition $emotion.anger >= 0.5 [$variables are context variables]
     - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
 
-Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately.
+Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately. Go back to your web interface and "I need some help with Container Services". Now if you say something like "You stupid bot! That's not what I want. You suck", it will now ask if you'd like to be transferred to the team.
 
 Finally, let's detect their response.
 Goto the intents tab and create two new Intents:
@@ -127,12 +144,12 @@ Now let's go back into the Dialog flow. Under "Transfer to Team" add two child n
 
 ![Add Child Node](/screenshots/Add-Child-Node.png)
 
-#### Child Node - \@Agree
-- If bot recognises: \@Agree
+#### Child Node - \#Agree
+- If bot recognises: \#Agree
 - Then respond with: 'Putting you through right away!'
 
-#### Child Node - \@Diagree
-- If bot recognises: \@Disagree
+#### Child Node - \#Diagree
+- If bot recognises: \#Disagree
 - Then respond with: 'No worries, is there anything else I can help with then?'
 
 
