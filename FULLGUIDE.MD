@@ -4,10 +4,7 @@
 ##### Todo
 - Basic UI
 - Deployment Guide https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-with-node-js-on-bluemix
-- Set up demo so that users can navigate the code in Bluemix if they don't have node installed.
-- Export and Upload Postman config
 - ? BotaaS ?
-- Export Workspace
 
 ##### Contents
 -----

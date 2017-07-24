@@ -6,9 +6,9 @@ var helmet   = require('helmet');
 var app      = express();
 var path     = require('path');
 var bodyParser = require('body-parser');
-var PORT = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 
 require('dotenv').config({silent:true});
+var PORT = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 
 // Require Routes
 var api = require('./routes/api.js');
