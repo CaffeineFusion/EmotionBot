@@ -56,7 +56,7 @@ This is designed as a trainer led session.
 
 4. Create and Add Credentials into .env file
 
-    *[side note: . files [ie: .env.template and .env] by default won't appear in your standard navigation tools, such as windows explorer. They are invisible. Most text editors (Atom/Sublime/Notepad++/Notepad) will be able to see them, however. Alternatively you can go to the folder in a command line. For Windows type `start notepad {myfilename}`, for Unix/Mac `vim {myfilename}`]
+*[side note: . files [ie: .env.template and .env] by default won't appear in your standard navigation tools, such as windows explorer. They are invisible. Most text editors (Atom/Sublime/Notepad++/Notepad) will be able to see them, however. Alternatively you can go to the folder in a command line. For Windows type `start notepad {myfilename}`, for Unix/Mac `vim {myfilename}`]
 
     **Linux / Mac OSX**: `mv .env.template .env`
 
