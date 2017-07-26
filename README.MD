@@ -154,7 +154,7 @@ So here's what we want to do:
 
 ## Detecting Tone - internal_modules/ToneAnalyser.js
 Trainer will overview Tone Analyser service.
-For an example that visualises real-time tone analysis, head to calldemo.servian.ai
+For an example that visualises real-time tone analysis, head to [calldemo.servian.ai](http://calldemo.servian.ai)
 
 ### Tone Analyser
 Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
