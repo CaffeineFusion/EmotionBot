@@ -137,24 +137,24 @@ You can navigate to https://{app_name}.mybluemix.net in your web browser and hav
 
 Let's now dig into what these services can do, and set up our bot to respond to Emotion.
 
-## Conversation Overview
+# Conversation Overview
 Trainer will overview:
 - Workspaces
 - Intents
 - Entities
 - Dialog
 
-## Responding to Tone
+# Responding to Tone
 So here's what we want to do:
 1. Customer says "I'm furious with you guys"
 2. Tone Analyser detects Anger
 3. Bot redirects customer to a staff member to have a personal conversation
 
-### Detecting Tone - internal_modules/ToneAnalyser.js
+## Detecting Tone - internal_modules/ToneAnalyser.js
 Trainer will overview Tone Analyser service.
 For an example that visualises real-time tone analysis, head to calldemo.servian.ai
 
-#### Tone Analyser
+### Tone Analyser
 Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
 The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
 
@@ -165,12 +165,12 @@ To get a better understanding of tone, you'll likely want to pass in conversatio
 ```
 However, for the sake of this demo, we'll just pass in the last sentence.
 
-#### Sentence and JSON analysis
+### Sentence and JSON analysis
 Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
 For more details, you can check out:
 https://github.com/IBM-Bluemix-Docs/tone-analyzer/blob/master/getting-started.md
 
-#### CURL
+### CURL
 To see the raw output, if you have CURL installed, you can replace {username} and {password} below with your *tone-analyzer* credentials you created earlier and run the code in your terminal window.
 ```
 curl --user "{username}":"{password}" \
@@ -252,8 +252,7 @@ You'll see the the following output:
 }
 ```
 
------
-### Explanation: Passing Custom Context Variables
+## Explanation: Passing Custom Context Variables
 So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass this data from our App to our Bot. The simplest is to pass in some additional context data:
 
       context:{emotion:{anger:0.9}}
@@ -263,7 +262,7 @@ We can then pick this up and use it in our Conversation Dialog Flow as a variabl
       $emotion.anger >= 0.8
 
 
-### Redirecting the Call
+## Redirecting the Call
 1. Open back up the Workspace we just created in the Bluemix's Conversation panel.
 2. Click through to the Dialog tab.
 3. Create a new node under the "Anything Else" node, call it "Transfer to Team"
@@ -280,7 +279,7 @@ Voila. We have a basic bot that can detect the emotion of the person calling and
 Finally, let's detect their response.
 Goto the intents tab and create two new Intents:
 
-#### Intent 4 - #Agree
+### Intent 4 - #Agree
 - Sure
 - Thanks
 - Right away please
@@ -289,7 +288,7 @@ Goto the intents tab and create two new Intents:
 - Yep
 - Okay
 
-#### Intent 5 - #Disagree
+### Intent 5 - #Disagree
 - No
 - That's not what I want
 - Stop
@@ -302,18 +301,18 @@ Now let's go back into the Dialog flow. Under "Transfer to Team" add two child n
 
     ![Add Child Node](/screenshots/Add-Child-Node.png)
 
-#### Child Node - \#Agree
+### Child Node - \#Agree
 - If bot recognises: \#Agree
 - Then respond with: 'Putting you through right away!'
 
-#### Child Node - \#Diagree
+### Child Node - \#Diagree
 - If bot recognises: \#Disagree
 - Then respond with: 'No worries, is there anything else I can help with then?'
 
     *When we implement this in a solution, we add a custom parameter that is returned by the Node. This gets picked up by our API. We can then trigger the next service to dial out to Twilio, for example*
 
 
-#### Node - Goodbye
+### Node - Goodbye
 We can also now tailor our messages to how the customer is feeling. Open the existing Goodbye node.
 
 Watson allows us to create responses that are sent based on a condition.
