@@ -301,7 +301,7 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
-    ![Add Child Node](/screenshots/Add-Child-Node.png)
+![Add Child Node](/screenshots/Add-Child-Node.png)
 
 ### Child Node - \#Agree
 - If bot recognises: \#Agree
