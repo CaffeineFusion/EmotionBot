@@ -57,13 +57,13 @@ This is designed as a trainer led session.
 
 4. Create and Add Credentials into .env file
 
-*[side note: . files [ie: .env.template and .env] by default won't appear in your standard navigation tools, such as windows explorer. They are invisible. Most text editors (Atom/Sublime/Notepad++/Notepad) will be able to see them, however. Alternatively you can go to the folder in a command line. For Windows type `start notepad {myfilename}`, for Unix/Mac `vim {myfilename}`]*
+    *[side note: . files [ie: .env.template and .env] by default won't appear in your standard navigation tools, such as windows explorer. They are invisible. Most text editors (Atom/Sublime/Notepad++/Notepad) will be able to see them, however. Alternatively you can go to the folder in a command line. For Windows type `start notepad {myfilename}`, for Unix/Mac `vim {myfilename}`]*
 
-**Linux / Mac OSX**: `mv .env.template .env`
+    **Linux / Mac OSX**: `mv .env.template .env`
 
-**Windows**: `rem .env.template .env` *[You may want to open the .env.template in notepad and resave it as .env Important - When saving it, you must change the file type to "\*.\*" otherwise it will append .txt]*
+    **Windows**: `rem .env.template .env` *[You may want to open the .env.template in notepad and resave it as .env Important - When saving it, you must change the file type to "\*.\*" otherwise it will append .txt]*
 
-    
+    ```
     cf create-service-key conversation-service new-key
     cf service-key conversation-service new-key
     # copy these credentials into the .env file
@@ -75,7 +75,7 @@ This is designed as a trainer led session.
     # copy these credentials into the .env file
     # TONE_USER={username}
     # TONE_PASS={password}
-    
+    ```
 
 5. Make our app name unique [*Linux* `vim manifest.yml`, *Windows* `start notepad manifest.yml`]
     `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
