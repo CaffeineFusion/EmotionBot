@@ -128,6 +128,7 @@ While our app is spinning up, move on to the next section [Building our Emotion 
 
 
 ---
+## Up and Running
 Congratulations! At this point we have now deployed a Bluemix App. This App is linked directly to our new Watson bot. Any changes to the Conversation Workspace will be reflected in our App immediately once Watson finishes retraining.
 
 You can navigate to https://{app_name}.mybluemix.net in your web browser and have a very basic conversation with your new Bot.
