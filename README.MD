@@ -9,64 +9,103 @@ Powered by IBM Watson.
 
 
 # Before you begin
+All the instructions for this lab can be found digitally at github.com/CaffeineFusion/EmotionBot
+It's suggested that you copy and paste from the Github rather than type the instructions in from the handout.
+
 1. Sign up for a Bluemix account
-      - [Sign up for Bluemix](https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
+    - [Sign up for Bluemix](https://console.ng.bluemix.net/registration/?target=/catalog/%3fcategory=watson)
 
 2. You'll need Cloud Foundry CLI, Git and Node
-      - [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
-      - [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
-      - [Install Node and NPM](https://nodejs.org/#download)
+    - [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
+    - [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
+    - [Install Node and NPM](https://nodejs.org/#download)
+
+# Overview
+There are plenty of Bots that can handle basic conversation... but can we build a Bot that understands how the customer is feeling?
+
+In this demo, we'll build a Conversation service that can respond to a customer's Emotions. We'll pick up the Emotions using Watson's Tone Analyser service and we'll deploy a prebuilt App that allows us to chain these together.
+
+This is designed as a trainer led session.
 
 # Setting up our Project
 1. Clone the project
 
-      `git clone https://github.com/CaffeineFusion/EmotionBot.git`
+    `git clone https://github.com/CaffeineFusion/EmotionBot.git`
 
-2. Create our basic bluemix services
-      ```
-      cf login
-      cf create-service conversation free conversation-service
-      cf create-service tone_analyzer lite tone-analyser-service
-      ```
+    [For Windows users - Do this from Git Bash]
 
-3. Add Credentials into .env file
-      ```
-      mv .env.template .env
+2. Open the cloned folder
 
-      cf create-service-key conversation-service new-key
-      cf service-key conversation-service new-key
-      # copy these credentials into the .env file
+    `cd EmotionBot`
 
-      cf create-service-key tone-analyser-service new-key
-      cf service-key tone-analyser-service new-key
-      # copy these credentials into the .env file
-      ```
+2. Log in to Cloud Foundry
+    [For Windows users - Do this from your terminal. CF tools don't work from Git Bash]
+    ```
+    cf login
+    ```
+    This will ask for an API and your Bluemix credentials.
+    If you set up your account for the Sydney datacenter, the api is api.au-syd.bluemix.net
+    Use your Bluemix credentials to log in.
 
-4. Make our app name unique [`vim manifest.yml`]
-      `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
+3. Create our basic Bluemix services
 
-5. Deploy application
-      ```
-      cf push
-      ```
+    ```
+    cf create-service conversation free conversation-service
+    cf create-service tone_analyzer lite tone-analyser-service
+    ```
 
-6. Demonstrate base app https://{app_name}.au-syd.mybluemix.net
+4. Create and Add Credentials into .env file
 
+    *[side note: . files [ie: .env.template and .env] by default won't appear in your standard navigation tools, such as windows explorer. They are invisible. Most text editors (Atom/Sublime/Notepad++/Notepad) will be able to see them, however. Alternatively you can go to the folder in a command line. For Windows type `start notepad {myfilename}`, for Unix/Mac `vim {myfilename}`]
+
+    **Linux / Mac OSX**: `mv .env.template .env`
+
+    **Windows**: `rem .env.template .env` *[You may want to open the .env.template in notepad and resave it as .env Important - When saving it, you must change the file type to "\*.\*" otherwise it will append .txt]*
+
+    ```
+    cf create-service-key conversation-service new-key
+    cf service-key conversation-service new-key
+    # copy these credentials into the .env file
+    # BOT_USER={username}
+    # BOT_PASS={password}
+
+    cf create-service-key tone-analyser-service new-key
+    cf service-key tone-analyser-service new-key
+    # copy these credentials into the .env file
+    # TONE_USER={username}
+    # TONE_PASS={password}
+    ```
+
+5. Make our app name unique [*Linux* `vim manifest.yml`, *Windows* `start notepad manifest.yml`]
+    `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
+
+6. Deploy application
+    ```
+    cf push
+    ```
+    While our app is spinning up, move on to the next section [Building our Emotion Bot](#building-emotion-bot) and create the Workspace. Then come back to see the app when it finishes deploying.
+
+7. Demonstrate base app https://{app_name}.au-syd.mybluemix.net
+
+    *Note: App should open, but we haven't set up the Workspace yet. We need to create the Workspace and link in the ID before we can interact with a bot!*
+
+<a name="building-emotion-bot"/>
 
 # Building our Emotion Bot
 ## Importing our base Workspace
 1. Navigate to your [Bluemix console](https://console.au-syd.bluemix.net/dashboard/services)
+
 2. Under All Services, Click into the conversation-service.
 
-      ![Conversation-Service](/screenshots/Conversation-Service.png)
+    ![Conversation-Service](/screenshots/Conversation-Service.png)
 
 3. Click "Launch Tool" to open the Conversation.
 
-      ![Launch-Tool](/screenshots/Launch-Tool.png)
+    ![Launch-Tool](/screenshots/Launch-Tool.png)
 
 4. Click the Upload button.
 
-      ![Upload-Workspace](/screenshots/Upload-Workspace.png)
+    ![Upload-Workspace](/screenshots/Upload-Workspace.png)
 
 5. Navigate to our project folder, select workspaces/workspace.json and import.
 
@@ -84,21 +123,126 @@ Powered by IBM Watson.
         ![Workspace-Details](/screenshots/Workspace-Details.png)
 
     - Paste into the .env file
+
     - Run `cf push`
 
+Congratulations! At this point we have now deployed a Bluemix App. This App is linked directly to our new Watson bot. Any changes to the Conversation Workspace will be reflected in our App immediately once Watson finishes retraining.
+
+Let's now dig into what these services can do, and set up our bot to respond to Emotion.
 
 ## Conversation Overview
+Trainer will overview:
+- Workspaces
 - Intents
 - Entities
 - Dialog
 
 ## Responding to Tone
-Hypothetical conversation flow:
+So here's what we want to do:
 1. Customer says "I'm furious with you guys"
 2. Tone Analyser detects Anger
 3. Bot redirects customer to a staff member to have a personal conversation
 
 ### Detecting Tone - internal_modules/ToneAnalyser.js
+Trainer will overview Tone Analyser service.
+For an example that visualises real-time tone analysis, head to calldemo.servian.ai
+
+    #### Tone Analyser
+    Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
+    The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
+
+    This means that, for short text snippets in a conversation, the results could be erratic. One sentence is positive, the next negative.
+    To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("But the eggs were bad")`, you might pass in the last three
+    ```
+    ("The conference was fantastic. The speakers were great. But the eggs were bad.")
+    ```
+
+    #### Sentence and JSON analysis
+    Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
+    For more details, you can check out:
+    https://github.com/IBM-Bluemix-Docs/tone-analyzer/blob/master/getting-started.md
+
+    #### CURL
+    To see the raw output, if you have CURL installed, you can replace {username} and {password} below with your *tone-analyzer* credentials you created earlier and run the code in your terminal window.
+    ```
+    curl --user "{username}":"{password}" \
+    --header "Content-Type: application/json" \
+    --data  "{\"text\": \"Hi Team, I know the times are difficult! Our sales have been disappointing for the past three quarters for our data analytics product suite. We have a competitive data analytics product suite in the industry. But we need to do our job selling it! \"}" \
+    "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-07-17&sentences=false"
+    ```
+
+    You'll see the the following output:
+    ```
+    {
+    	"document_tone": {
+    		"tone_categories": [{
+    			"tones": [{
+    				"score": 0.069776,
+    				"tone_id": "anger",
+    				"tone_name": "Anger"
+    			}, {
+    				"score": 0.010281,
+    				"tone_id": "disgust",
+    				"tone_name": "Disgust"
+    			}, {
+    				"score": 0.238294,
+    				"tone_id": "fear",
+    				"tone_name": "Fear"
+    			}, {
+    				"score": 0.03581,
+    				"tone_id": "joy",
+    				"tone_name": "Joy"
+    			}, {
+    				"score": 0.448082,
+    				"tone_id": "sadness",
+    				"tone_name": "Sadness"
+    			}],
+    			"category_id": "emotion_tone",
+    			"category_name": "Emotion Tone"
+    		}, {
+    			"tones": [{
+    				"score": 0.72969,
+    				"tone_id": "analytical",
+    				"tone_name": "Analytical"
+    			}, {
+    				"score": 0.0,
+    				"tone_id": "confident",
+    				"tone_name": "Confident"
+    			}, {
+    				"score": 0.0,
+    				"tone_id": "tentative",
+    				"tone_name": "Tentative"
+    			}],
+    			"category_id": "language_tone",
+    			"category_name": "Language Tone"
+    		}, {
+    			"tones": [{
+    				"score": 0.05805,
+    				"tone_id": "openness_big5",
+    				"tone_name": "Openness"
+    			}, {
+    				"score": 0.510902,
+    				"tone_id": "conscientiousness_big5",
+    				"tone_name": "Conscientiousness"
+    			}, {
+    				"score": 0.584692,
+    				"tone_id": "extraversion_big5",
+    				"tone_name": "Extraversion"
+    			}, {
+    				"score": 0.102107,
+    				"tone_id": "agreeableness_big5",
+    				"tone_name": "Agreeableness"
+    			}, {
+    				"score": 0.858414,
+    				"tone_id": "emotional_range_big5",
+    				"tone_name": "Emotional Range"
+    			}],
+    			"category_id": "social_tone",
+    			"category_name": "Social Tone"
+    		}]
+    	}
+    }
+    ```
 
 ### Passing Custom Context Variables
 So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
@@ -174,7 +318,7 @@ And our response is "Sorry I couldn't be of more assistance, hope you have a goo
 
 5. **Important** - We now need to move the generic response to the bottom of the list to ensure that the other conditions are checked first. Click the up arrows on the Happy and Angry responses until they both are above the generic response.
 
-
+## Analysis & Learning
 
 ------
 #### Notes

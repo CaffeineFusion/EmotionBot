@@ -6,7 +6,7 @@ declared-services:
     label: tone_analyzer
     plan: lite
 applications:
-- name: emotion_bot_owen
+- name: emotion_bot
   services:
   - conversation-service
   - tone-analyser-service
