@@ -18,7 +18,6 @@ It's suggested that you copy and paste from the Github rather than type the inst
 2. You'll need Cloud Foundry CLI, Git and Node
     - [Install Git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git)
     - [Install Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
-    - [Install Node and NPM](https://nodejs.org/#download)
 
 # Overview
 There are plenty of Bots that can handle basic conversation... but can we build a Bot that understands how the customer is feeling?
@@ -77,7 +76,7 @@ This is designed as a trainer led session.
     # TONE_PASS={password}
     ```
 
-5. Make our app name unique [*Linux* `vim manifest.yml`, *Windows* `start notepad manifest.yml`]
+5. Make our app name unique [*Linux/Mac* `vim manifest.yml`, *Windows* `start notepad manifest.yml`]
     `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
 
 6. Deploy application
