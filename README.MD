@@ -37,9 +37,10 @@ This is designed as a trainer led session.
 2. Open the cloned folder
 
     `cd EmotionBot`
+    [For Windows users - Do this from your terminal. CF tools don't work from Git Bash]
+   
 
 2. Log in to Cloud Foundry
-    [For Windows users - Do this from your terminal. CF tools don't work from Git Bash]
     ```
     cf login
     ```
