@@ -38,7 +38,7 @@ This is designed as a trainer led session.
 
     `cd EmotionBot`
     [For Windows users - Do this from your terminal. CF tools don't work from Git Bash]
-   
+
 
 2. Log in to Cloud Foundry
     ```
@@ -81,9 +81,9 @@ This is designed as a trainer led session.
     `- name: emotion_bot` -> `- name: emotion_bot_{your_name}`
 
 6. Deploy application
-    
+
     cf push
-    
+
 While our app is spinning up, move on to the next section [Building our Emotion Bot](#building-emotion-bot) and create the Workspace. Then come back to see the app when it finishes deploying.
 
 7. Demonstrate base app https://{app_name}.au-syd.mybluemix.net
@@ -131,9 +131,9 @@ Congratulations! At this point we have now deployed a Bluemix App. This App is l
 
 You can navigate to https://{app_name}.mybluemix.net in your web browser and have a very basic conversation with your new Bot.
 
-    ![Chatting with the Bot](/screenshots/Chatting.png)
+![Chatting with the Bot](/screenshots/Chatting.png)
 
-    (It recognises 3 intents: Greetings, Goodbye, and Support. If you ask for help with a specific Bluemix service, such as Single Sign On, Watson, Virtual Machines, or Docker it will pretend to activate that support service.)
+(It recognises 3 intents: Greetings, Goodbye, and Support. If you ask for help with a specific Bluemix service, such as Single Sign On, Watson, Virtual Machines, or Docker it will pretend to activate that support service.)
 
 Let's now dig into what these services can do, and set up our bot to respond to Emotion.
 
@@ -252,6 +252,7 @@ You'll see the the following output:
 }
 ```
 
+-----
 ### Explanation: Passing Custom Context Variables
 So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass this data from our App to our Bot. The simplest is to pass in some additional context data:
 
@@ -269,7 +270,7 @@ We can then pick this up and use it in our Conversation Dialog Flow as a variabl
 This will be our escape node. "Would you like me to transfer you to our team?"
 4. Add a new child node under the "Support" node.
 
-    ![Add Child Node](/screenshots/Add-Child-Node)
+    ![Add Child Node](/screenshots/Add-Child-Node.png)
 
     - Add the condition $emotion.anger >= 0.5 [$variables are context variables]
     - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
@@ -299,7 +300,7 @@ Goto the intents tab and create two new Intents:
 
 Now let's go back into the Dialog flow. Under "Transfer to Team" add two child nodes:
 
-![Add Child Node](/screenshots/Add-Child-Node.png)
+    ![Add Child Node](/screenshots/Add-Child-Node.png)
 
 #### Child Node - \#Agree
 - If bot recognises: \#Agree
@@ -309,7 +310,7 @@ Now let's go back into the Dialog flow. Under "Transfer to Team" add two child n
 - If bot recognises: \#Disagree
 - Then respond with: 'No worries, is there anything else I can help with then?'
 
-*When we implement this in a solution, we add a custom parameter that is returned by the Node. This gets picked up by our API. We can then trigger the next service to dial out to Twilio, for example*
+    *When we implement this in a solution, we add a custom parameter that is returned by the Node. This gets picked up by our API. We can then trigger the next service to dial out to Twilio, for example*
 
 
 #### Node - Goodbye
