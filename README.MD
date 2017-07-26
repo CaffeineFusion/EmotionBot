@@ -128,6 +128,10 @@ This is designed as a trainer led session.
 
 Congratulations! At this point we have now deployed a Bluemix App. This App is linked directly to our new Watson bot. Any changes to the Conversation Workspace will be reflected in our App immediately once Watson finishes retraining.
 
+You can navigate to https://{app_name}.mybluemix.net and have a very basic conversation with your new Bot.
+
+    ![Chatting with the Bot](/screenshots/Chatting.png)
+
 Let's now dig into what these services can do, and set up our bot to respond to Emotion.
 
 ## Conversation Overview
@@ -147,105 +151,106 @@ So here's what we want to do:
 Trainer will overview Tone Analyser service.
 For an example that visualises real-time tone analysis, head to calldemo.servian.ai
 
-    #### Tone Analyser
-    Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
-    The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
+#### Tone Analyser
+Tone Analyser is a machine learning model that detects a customer's sentiment based on the words that they are using.
+The service does not maintain a session - so the Tone measurement will correspond to only the text you have just sent to the service.
 
-    This means that, for short text snippets in a conversation, the results could be erratic. One sentence is positive, the next negative.
-    To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("But the eggs were bad")`, you might pass in the last three
-    ```
-    ("The conference was fantastic. The speakers were great. But the eggs were bad.")
-    ```
+This means that, for short text snippets in a conversation, the results could be erratic. One sentence is positive, the next negative.
+To get a better understanding of tone, you'll likely want to pass in conversation context as well. Rather than just passing in the last comment `("But the eggs were bad")`, you might pass in the last three
+```
+("The conference was fantastic. The speakers were great. But the eggs were bad.")
+```
+However, for the sake of this demo, we'll just pass in the last sentence.
 
-    #### Sentence and JSON analysis
-    Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
-    For more details, you can check out:
-    https://github.com/IBM-Bluemix-Docs/tone-analyzer/blob/master/getting-started.md
+#### Sentence and JSON analysis
+Tone Analyser can also be used to parse more complex objects and sentence breakdowns. For this demo, we only want a simple analysis of the text we're passing to the API.
+For more details, you can check out:
+https://github.com/IBM-Bluemix-Docs/tone-analyzer/blob/master/getting-started.md
 
-    #### CURL
-    To see the raw output, if you have CURL installed, you can replace {username} and {password} below with your *tone-analyzer* credentials you created earlier and run the code in your terminal window.
-    ```
-    curl --user "{username}":"{password}" \
-    --header "Content-Type: application/json" \
-    --data  "{\"text\": \"Hi Team, I know the times are difficult! Our sales have been disappointing for the past three quarters for our data analytics product suite. We have a competitive data analytics product suite in the industry. But we need to do our job selling it! \"}" \
-    "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-07-17&sentences=false"
-    ```
+#### CURL
+To see the raw output, if you have CURL installed, you can replace {username} and {password} below with your *tone-analyzer* credentials you created earlier and run the code in your terminal window.
+```
+curl --user "{username}":"{password}" \
+--header "Content-Type: application/json" \
+--data  "{\"text\": \"Hi Team, I know the times are difficult! Our sales have been disappointing for the past three quarters for our data analytics product suite. We have a competitive data analytics product suite in the industry. But we need to do our job selling it! \"}" \
+"https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-07-17&sentences=false"
+```
 
-    You'll see the the following output:
-    ```
-    {
-    	"document_tone": {
-    		"tone_categories": [{
-    			"tones": [{
-    				"score": 0.069776,
-    				"tone_id": "anger",
-    				"tone_name": "Anger"
-    			}, {
-    				"score": 0.010281,
-    				"tone_id": "disgust",
-    				"tone_name": "Disgust"
-    			}, {
-    				"score": 0.238294,
-    				"tone_id": "fear",
-    				"tone_name": "Fear"
-    			}, {
-    				"score": 0.03581,
-    				"tone_id": "joy",
-    				"tone_name": "Joy"
-    			}, {
-    				"score": 0.448082,
-    				"tone_id": "sadness",
-    				"tone_name": "Sadness"
-    			}],
-    			"category_id": "emotion_tone",
-    			"category_name": "Emotion Tone"
-    		}, {
-    			"tones": [{
-    				"score": 0.72969,
-    				"tone_id": "analytical",
-    				"tone_name": "Analytical"
-    			}, {
-    				"score": 0.0,
-    				"tone_id": "confident",
-    				"tone_name": "Confident"
-    			}, {
-    				"score": 0.0,
-    				"tone_id": "tentative",
-    				"tone_name": "Tentative"
-    			}],
-    			"category_id": "language_tone",
-    			"category_name": "Language Tone"
-    		}, {
-    			"tones": [{
-    				"score": 0.05805,
-    				"tone_id": "openness_big5",
-    				"tone_name": "Openness"
-    			}, {
-    				"score": 0.510902,
-    				"tone_id": "conscientiousness_big5",
-    				"tone_name": "Conscientiousness"
-    			}, {
-    				"score": 0.584692,
-    				"tone_id": "extraversion_big5",
-    				"tone_name": "Extraversion"
-    			}, {
-    				"score": 0.102107,
-    				"tone_id": "agreeableness_big5",
-    				"tone_name": "Agreeableness"
-    			}, {
-    				"score": 0.858414,
-    				"tone_id": "emotional_range_big5",
-    				"tone_name": "Emotional Range"
-    			}],
-    			"category_id": "social_tone",
-    			"category_name": "Social Tone"
-    		}]
-    	}
-    }
-    ```
+You'll see the the following output:
+```
+{
+	"document_tone": {
+		"tone_categories": [{
+			"tones": [{
+				"score": 0.069776,
+				"tone_id": "anger",
+				"tone_name": "Anger"
+			}, {
+				"score": 0.010281,
+				"tone_id": "disgust",
+				"tone_name": "Disgust"
+			}, {
+				"score": 0.238294,
+				"tone_id": "fear",
+				"tone_name": "Fear"
+			}, {
+				"score": 0.03581,
+				"tone_id": "joy",
+				"tone_name": "Joy"
+			}, {
+				"score": 0.448082,
+				"tone_id": "sadness",
+				"tone_name": "Sadness"
+			}],
+			"category_id": "emotion_tone",
+			"category_name": "Emotion Tone"
+		}, {
+			"tones": [{
+				"score": 0.72969,
+				"tone_id": "analytical",
+				"tone_name": "Analytical"
+			}, {
+				"score": 0.0,
+				"tone_id": "confident",
+				"tone_name": "Confident"
+			}, {
+				"score": 0.0,
+				"tone_id": "tentative",
+				"tone_name": "Tentative"
+			}],
+			"category_id": "language_tone",
+			"category_name": "Language Tone"
+		}, {
+			"tones": [{
+				"score": 0.05805,
+				"tone_id": "openness_big5",
+				"tone_name": "Openness"
+			}, {
+				"score": 0.510902,
+				"tone_id": "conscientiousness_big5",
+				"tone_name": "Conscientiousness"
+			}, {
+				"score": 0.584692,
+				"tone_id": "extraversion_big5",
+				"tone_name": "Extraversion"
+			}, {
+				"score": 0.102107,
+				"tone_id": "agreeableness_big5",
+				"tone_name": "Agreeableness"
+			}, {
+				"score": 0.858414,
+				"tone_id": "emotional_range_big5",
+				"tone_name": "Emotional Range"
+			}],
+			"category_id": "social_tone",
+			"category_name": "Social Tone"
+		}]
+	}
+}
+```
 
-### Passing Custom Context Variables
-So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass in this data. The simplest is to pass in some additional context data:
+### Explanation: Passing Custom Context Variables
+So our base app can extract emotion from text input, but how can we leverage ToneAnalyser to get the Bot to respond to it? There are a number of different ways we could pass this data from our App to our Bot. The simplest is to pass in some additional context data:
 
       context:{emotion:{anger:0.9}}
 
@@ -255,9 +260,11 @@ We can then pick this up and use it in our Conversation Dialog Flow as a variabl
 
 
 ### Redirecting the Call
-1. Create a new node under the "Anything Else" node, call it "Transfer to Team"
+1. Open back up the Workspace we just created in the Bluemix's Conversation panel.
+2. Click through to the Dialog tab.
+3. Create a new node under the "Anything Else" node, call it "Transfer to Team"
 This will be our escape node. "Would you like me to transfer you to our team?"
-2. Add a new child node under the "Support" node.
+4. Add a new child node under the "Support" node.
     - Add the condition $emotion.anger >= 0.5 [$variables are context variables]
     - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
 
