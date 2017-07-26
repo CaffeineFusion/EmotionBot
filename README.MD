@@ -275,6 +275,7 @@ This will be our escape node. "Would you like me to transfer you to our team?"
 
     - Add the condition $emotion.anger >= 0.5 [$variables are context variables]
     - Down the bottom, against 'And then' select "Jump to..." -> "Transfer to Team"
+    - Click "Jump to... and Respond" (We want the bot to immediately return the text when it gets to this node)
 
 Voila. We have a basic bot that can detect the emotion of the person calling and respond appropriately. Go back to your web interface and "I need some help with Container Services". Now if you say something like "You stupid bot! That's not what I want. You suck", it will now ask if you'd like to be transferred to the team.
 
