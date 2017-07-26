@@ -60,7 +60,7 @@ This is designed as a trainer led session.
 
     **Linux / Mac OSX**: `mv .env.template .env`
 
-    **Windows**: `rem .env.template .env` *[You may want to open the .env.template in notepad and resave it as .env Important - When saving it, you must change the file type to "\*.\*" otherwise it will append .txt]*
+    **Windows**: `ren .env.template .env` *[You may want to open the .env.template in notepad and resave it as .env Important - When saving it, you must change the file type to "\*.\*" otherwise it will append .txt]*
 
     ```
     cf create-service-key conversation-service new-key
